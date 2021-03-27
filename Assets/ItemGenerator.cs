@@ -86,6 +86,6 @@ public class ItemGenerator : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }
