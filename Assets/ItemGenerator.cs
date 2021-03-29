@@ -19,17 +19,49 @@ public class ItemGenerator : MonoBehaviour
     //アイテムを出すx方向の範囲
     private float posRange = 3.4f;
 
-    //アイテムはすべてStart関数で生成している。z方向（画面奥方向）に15mずつスペースをあけてアイテムを
-    //生成するが、このままではアイテムが整列してしまい不自然なので、
-    //z方向へランダムに配置されるようにRandom.Range関数を使ってz方向の位置を調節している
+    //発展追加
+    private int positionZ;
+    private GameObject unitychan;
 
-    //生成するアイテムの種類もRandom.Range関数を使って決めている
-    //乱数はアイテムの位置をランダムにするだけでなく、アイテムの種類を確率で決めるときにも使える
+    /*!!
+    アイテムはすべてStart関数で生成している。z方向（画面奥方向）に15mずつスペースをあけてアイテムを
+    生成するが、このままではアイテムが整列してしまい不自然なので、
+    z方向へランダムに配置されるようにRandom.Range関数を使ってz方向の位置を調節している
+
+    生成するアイテムの種類もRandom.Range関数を使って決めている
+    乱数はアイテムの位置をランダムにするだけでなく、アイテムの種類を確率で決めるときにも使える
+    */
     void Start()
     {
+        //発展追加
+        //Unityちゃんのオブジェクトを取得
+        this.unitychan = GameObject.Find("unitychan");
+        this.positionZ = startPos;
+        ItemGenerate(this.positionZ);
+    }
+
+    //発展追加
+    void Update()
+    {
+        if (this.positionZ < this.unitychan.transform.position.z + 50)
+        {
+            this.positionZ += 5;
+            ItemGenerate(this.positionZ);
+        }
+    }
+
+    //発展追加
+    int ItemGenerate(int startpositionZ)
+    {
+        this.positionZ = startpositionZ + 25;
+
+        if (this.positionZ > goalPos)
+        {
+            this.positionZ = goalPos;
+        }
+
         //一定の距離ごとにアイテムを生成
-        //19回下の処理を繰り返す
-        for (int i = startPos; i < goalPos; i += 15)
+        for (int i = startpositionZ; i < this.positionZ; i += 15)
         {
             //まずどのアイテムを出すのかをランダムに設定(1~10)
             //Randomクラスの「Range」関数は、第一引数以上、第二引数未満の整数をランダムに返す
@@ -82,10 +114,7 @@ public class ItemGenerator : MonoBehaviour
                 }
             }
         }
-    }
 
-    void Update()
-    {
-
+        return this.positionZ;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//追加　アイテムにアタッチ
 public class DestroyCamera : MonoBehaviour
 {
     //カメラのオブジェクト

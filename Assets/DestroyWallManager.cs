@@ -9,7 +9,6 @@ public class DestroyWallManager : MonoBehaviour
     //DestroyWallManagerとカメラの距離
     private float difference;
 
-    // Use this for initialization
     void Start()
     {
         //Unityちゃんのオブジェクトを取得
