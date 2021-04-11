@@ -17,5 +17,7 @@ public class CoinController : MonoBehaviour
         //回転
         //Rotate関数を使ってY軸を中心にコインが回転し続けるようにしている
         this.transform.Rotate(0, 3, 0);
+
+        Debug.Log("kk");
     }
 }
